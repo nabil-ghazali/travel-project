@@ -45,7 +45,8 @@ Le fichier `travel_data.csv` contient un carnet de voyage avec les colonnes suiv
   - Créer un graphique montrant le nombre moyen de photos prises par condition météo  
 - Fonction `plot_mood_distribution(df: pd.DataFrame) -> None`  
   - Visualiser la répartition des humeurs dans les données  
-- (Bonus) Fonction pour visualiser l’évolution des photos prises au fil du temps
+- Fonction pour visualiser l’évolution des photos prises au fil du temps
+- Fonction pour afficher une carte avec les destinations visitées
 
 ### 4. `main.py`
 
