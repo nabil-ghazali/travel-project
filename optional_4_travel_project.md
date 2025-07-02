@@ -28,8 +28,8 @@ Le fichier `travel_data.csv` contient un carnet de voyage avec les colonnes suiv
 
 - Fonction `load_and_clean_data(filename: str) -> pd.DataFrame`  
   - Charger le fichier CSV  
-  - Traiter les valeurs manquantes (imputation ou suppression)  
-  - Détecter et corriger ou supprimer les valeurs aberrantes (dates invalides, photos négatives, météo/humeur non valides)  
+  - Traiter les valeurs manquantes, justifier le choix fait pour le traitement 
+  - Détecter et traiter les valeurs aberrantes, justifier les choix faits
   - Retourner un DataFrame propre et prêt à l’analyse
 
 ### 2. `print_stat.py`
@@ -46,7 +46,6 @@ Le fichier `travel_data.csv` contient un carnet de voyage avec les colonnes suiv
 - Fonction `plot_mood_distribution(df: pd.DataFrame) -> None`  
   - Visualiser la répartition des humeurs dans les données  
 - Fonction pour visualiser l’évolution des photos prises au fil du temps
-- Fonction pour afficher une carte avec les destinations visitées
 
 ### 4. `main.py`
 
@@ -76,7 +75,24 @@ Le fichier `travel_data.csv` contient un carnet de voyage avec les colonnes suiv
 - Le script `main.py` doit être le point d’entrée unique pour lancer toute l’application, vous aider de la ressource pour comprendre et écrire le script.
 - Dans le terminal, le code doit se lancer quand vous taper : `python3 main.py`
 
-**Optionnel**
-- Testez vos fonctions dans un notebook ou en mode interactif  
-- Ajouter un script `add_data.py` qui permet de demander à l'utilisateur d'ajouter un nouveau voyage et les ajouter dans le fichier csv.
+**Bonus du bonus**
+- Ajouter un script `add_data.py` qui permet de demander à l'utilisateur d'ajouter un nouveau voyage, en le guidant sur les champs à reneigner et les ajouter dans le fichier csv
+- Ajouter cette fonctionnalité dans le main.py
+
+- Chercher des outils permettant d'afficher des données sur une carte
+- En fonction de l'outil choisi, y'a-t-il des données supplémentaires à récuppérer ?
+- Implémenter dans `plot_data.py` une fonction pour visualiser les destinations sur une carte 
+
+- Ajouter de la doc
+- Ajouter des tests
+
+- Imaginons que d'autres données soient disponibles dans une base de données. Quelles étapes faudrait-il ajouter pour les utiliser en plus du csv ?   
+Quelles modifications pourraient être faites sur l'architecture du code pour anticiper l'ajout d'une autre source de données ? 
+- Implémenter les solutions proposées
+
+- Utiliser streamlit pour afficher vos graphes en vous appuyant sur la doc : https://streamlit.io/
+- Ajouter une interface pour que les utilisateurs puissent choisir quelles variables afficher sur chaque axe d'un graphe. 
+
+
+
 
