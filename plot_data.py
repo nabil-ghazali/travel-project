@@ -1,9 +1,11 @@
 import plotly.express as px
 import pandas as pd
 import plotly.io as pio
+import os
 
 # Forcer l'ouverture du navigatreur
 pio.renderers.default = 'browser'
+
 
 def plot_photos_by_weather(df):
 
@@ -21,7 +23,8 @@ def plot_photos_by_weather(df):
         text_auto='.2s'  # Affiche la valeur moyenne au-dessus des barres
     )
 
-    fig.show()
+    fig.write_html("graph.html", auto_open=False)
+    os.system('powershell.exe start graph.html')
 
 
 def plot_mood_distribution(df):
@@ -33,7 +36,8 @@ def plot_mood_distribution(df):
         hole=0.2,  # Trou du donut
     )
     fig.update_traces(textinfo='percent+label')  # Affiche % et le nom de l’humeur
-    fig.show()
+    fig.write_html("graph.html", auto_open=False)
+    os.system('powershell.exe start graph.html')
 
 
 def plot_photos_by_date(df):
@@ -49,7 +53,10 @@ def plot_photos_by_date(df):
         title='Évolution du nombre de photos prises au fil du temps',
         labels={'date': 'Date', 'photos': 'Nombre de photos'}
     )
-    fig.show()
+    fig.write_html("graph.html", auto_open=False)
+    os.system('powershell.exe start graph.html')
+
+
 # Test fonction
 # plot_photos_by_weather("sorted_travel_data.csv")
 # plot_mood_distribution("sorted_travel_data.csv")

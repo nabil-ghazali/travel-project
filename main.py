@@ -6,12 +6,13 @@ from plot_data import (
     plot_mood_distribution,
     plot_photos_by_date,
 )
-
+from add_data import add_data
 """
 main.py
 
  Script principal qui :  
   - Importe et utilise les fonctions des modules précédents  
+  - Ajoute des données et les traduit en fichier.csv
   - Charge et nettoie les données  
   - Affiche les statistiques  
   - Produit les graphiques  
@@ -21,8 +22,11 @@ main.py
 
 def main() -> None:
 
+    # Ajouter des données
+    new_trip = add_data()
+
     # Charger, nettoyer les données et exporter un nouveau fichier 
-    df_clean = load_and_clean_data("travel_data.csv","cleaned_data")
+    df_clean = load_and_clean_data(new_trip,"cleaned_data")
 
     # Afficher statistiques dans la console
     print_statistics(df_clean)
@@ -34,4 +38,9 @@ def main() -> None:
 
 
 if __name__ == "__main__":
-    main()
+    
+    start = input("Souhaitez-vous ajouter un voyage ? (oui/non) : ").strip().lower()
+    if start in ["oui", "o", "yes", "y"]:
+        main() 
+    else:
+        print("👋 Aucun ajout effectué. Fin du programme.")
