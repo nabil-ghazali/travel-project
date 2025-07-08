@@ -1,17 +1,17 @@
 import pandas as pd
 from datetime import datetime
-import os
 
 def add_data():
+    all_trips = []
 
     while True:
-        data_frame = {}
+        data = {}
 
         city = input("What is the city you traveled to: ").strip()
         while not city:
             print("❌ La ville ne peut pas être vide.")
             city = input("What is the city you traveled to: ").strip()
-        data_frame["city"] = city
+        data["city"] = city
 
         while True:
             date_input = input("When was the date of this trip (format: YYYY/MM/DD): ").strip()
@@ -20,45 +20,46 @@ def add_data():
                 break
             except ValueError:
                 print("❌ Format incorrect. Exemple : 2025/07/04")
-        data_frame["date"] = date_input
+        data["date"] = date_input
 
         weather = input("What was the weather like during this trip: ").strip()
         while not weather:
             print("❌ Le champ météo ne peut pas être vide.")
             weather = input("What was the weather like during this trip: ").strip()
-        data_frame["weather"] = weather
+        data["weather"] = weather
 
         mood = input("What was your mood during this trip: ").strip()
         while not mood:
             print("❌ Le champ humeur ne peut pas être vide.")
             mood = input("What was your mood during this trip: ").strip()
-        data_frame["mood"] = mood
+        data["mood"] = mood
 
         while True:
             photos = input("How many photos did you take during your trip: ").strip()
             if photos.isdigit():
-                data_frame["photos"] = int(photos)
+                data["photos"] = int(photos)
                 break
             else:
                 print("❌ Entre un nombre entier (ex: 3, 12...)")
 
-        df = pd.DataFrame([data_frame])
+        all_trips.append(data)
 
-        while True:
-            name_data_frame = input("Nom du fichier CSV (sans extension) : ").strip()
-            if name_data_frame:
-                break
-            else:
-                print("❌ Le nom du fichier ne peut pas être vide.")
+        again = input("\nSouhaitez-vous ajouter un autre voyage ? (oui/non) : ").strip().lower()
+        if again not in ["oui", "o", "yes", "y"]:
+            print("\n✅ Fin de l’ajout des voyages.\n")
+            break
 
-        new_data_frame_csv = f"{name_data_frame}.csv"
-
-        if os.path.exists(new_data_frame_csv):
-            df.to_csv(new_data_frame_csv, mode='a', header=False, index=False)
-            print(f"✅ Données ajoutées à {new_data_frame_csv}")
+    # À la fin : demander le nom du fichier à générer
+    while True:
+        name_data_frame = input("Nom du fichier CSV final (sans extension) : ").strip()
+        if name_data_frame:
+            break
         else:
-            df.to_csv(new_data_frame_csv, index=False)
-            print(f"✅ Nouveau fichier créé : {new_data_frame_csv}")
-            return new_data_frame_csv
-        
-  
+            print("❌ Le nom du fichier ne peut pas être vide.")
+
+    filename = f"{name_data_frame}.csv"
+    df = pd.DataFrame(all_trips)
+    df.to_csv(filename, index=False)
+    print(f"✅ Données enregistrées dans le fichier : {filename}\n")
+
+    return filename
